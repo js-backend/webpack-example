@@ -1,18 +1,23 @@
 'use strict';
 
 // command:
-// set NODE_ENV=prod or NODE_ENV=development
+// set NODE_ENV=production or NODE_ENV=development
 // set webpack
 const NODE_ENV = process.env.NODE_ENV || 'development';
 const webpack = require('webpack');
 
-console.log('hhh hhh ' + process.env.NODE_ENV);
+console.log('process.env.NODE_ENV = ' + process.env.NODE_ENV);
 
 module.exports = {
-    entry: './home',
+    context: __dirname + '/frontend',
+    entry: {
+        home: './home',
+        about: './about'
+    },
     output: {
-        filename: 'build.js',
-        library: 'home'
+        path: __dirname + '/public',
+        filename: '[name].js',
+        library: '[name]'
     },
 
     watch: NODE_ENV == 'development',
